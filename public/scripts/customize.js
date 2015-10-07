@@ -101,7 +101,14 @@ toggleColorPicking = function(e) {
 };
 
 updateLetterCount = function(e) {
-  return document.getElementById('char-count').textContent = e.target.value.length;
+  var current;
+  current = document.getElementById("char-count");
+  current.textContent = e.target.value.length;
+  if (parseInt(current.textContent, 10) > parseInt(document.getElementById("char-max").textContent, 10)) {
+    return current.classList.add("overflow");
+  } else {
+    return current.classList.remove("overflow");
+  }
 };
 
 changeMaterial = function(e) {

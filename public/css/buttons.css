@@ -25,11 +25,13 @@ a {
 }
 .btn.action {
   background-color: #fff;
-  color: #222;
+  color: #666;
+  padding: 2px 8px;
 }
 .btn.action:hover {
   background-color: #fcfcfc;
-  color: #29221F;
+  color: #444;
+  border: 1px solid #666;
 }
 .btn:hover {
   background-color: #3a302c;

@@ -1,5 +1,5 @@
 
-
+@import "normalize.css";
 @import "variables.less";
 @import 'grid.less';
 @import 'helpers.less';
@@ -269,7 +269,11 @@ footer {
     .chars {
       padding-left: 10px;
       .hip();
+      .overflow {
+        color: darken(@alpha, 10%);
+      }
     }
+
   }
 
   #layout-example {
@@ -307,6 +311,7 @@ footer {
     button#add-another-color:focus {
       outline: none;
       box-shadow: 0px 0px 5px @alpha;
+      border: 1px solid #222;
     }
 
     .colors {

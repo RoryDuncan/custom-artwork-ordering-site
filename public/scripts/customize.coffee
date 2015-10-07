@@ -96,7 +96,12 @@ toggleColorPicking = (e) ->
 
 # updates the number of letters taken up
 updateLetterCount = (e) ->
-  document.getElementById('char-count').textContent = e.target.value.length
+  current = document.getElementById("char-count")
+  current.textContent = e.target.value.length
+  if parseInt(current.textContent, 10) > parseInt(document.getElementById("char-max").textContent, 10)
+    current.classList.add("overflow")
+  else
+    current.classList.remove("overflow")
 
 # changes the material and handles displaying the corresponding section
 changeMaterial = (e) ->

@@ -1,3 +1,4 @@
+@import "normalize.css";
 * {
   box-sizing: border-box;
 }
@@ -281,11 +282,13 @@ a {
 }
 .btn.action {
   background-color: #fff;
-  color: #222;
+  color: #666;
+  padding: 2px 8px;
 }
 .btn.action:hover {
   background-color: #fcfcfc;
-  color: #29221F;
+  color: #444;
+  border: 1px solid #666;
 }
 .btn:hover {
   background-color: #3a302c;
@@ -501,6 +504,9 @@ footer .footer {
   padding-left: 10px;
   font-family: "Alice";
 }
+.customize #text .chars .overflow {
+  color: #fa0420;
+}
 .customize #layout-example {
   min-height: 250px;
 }
@@ -535,6 +541,7 @@ footer .footer {
 .customize #color-scheme button#add-another-color:focus {
   outline: none;
   box-shadow: 0px 0px 5px #FC354C;
+  border: 1px solid #222;
 }
 .customize #color-scheme .colors {
   transition: 0.2s linear height;

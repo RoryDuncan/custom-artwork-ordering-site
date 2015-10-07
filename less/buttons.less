@@ -1,0 +1,54 @@
+
+
+@import "variables.less";
+
+a {
+  cursor: pointer;
+  color: @alpha;
+}
+
+.btn {
+  cursor: pointer;
+  display: block;
+  background-color: @beta;
+  border: 1px solid rgba(0,0,0,0.25);
+  color: #f2f2f2;
+  text-align: center;
+  text-transform: uppercase;
+  padding: 8px 16px;
+  font-size: 0.8em;
+  margin-bottom: 5px;
+
+  &.primary {
+    background-color: darken(@gamma, 6%);
+    color: @epsilon;
+    border-radius: 3px;
+    &:hover {
+      color: @epsilon;
+      background-color: @gamma;
+    }
+  }
+
+  &.action {
+    background-color: #fff;
+    color: #222;
+    &:hover {
+      background-color: #fcfcfc;
+      color: @beta;
+    }
+  }
+
+  &:hover {
+
+    background-color: lighten(@beta, 6%);
+    color: @alpha;
+    border: 1px solid rgba(0,0,0,0.45);
+    transition: 0.1s linear background-color;
+
+  }
+
+
+  &.small {
+    font-size: 0.6em;
+  }
+}

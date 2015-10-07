@@ -1,0 +1,32 @@
+{
+  "name": "graffiti-site",
+  "version": "0.0.1",
+  "description": "A website-as-a-storefront for selling a customisable product",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/RoryDuncan/strident-octo-waddle.git"
+  },
+  "author": "Rory Duncan",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/RoryDuncan/strident-octo-waddle/issues"
+  },
+  "homepage": "https://github.com/RoryDuncan/strident-octo-waddle",
+  "dependencies": {
+    "hapi": "^10.3.0",
+    "inert": "^3.0.2",
+    "jade": "^1.11.0",
+    "joi": "^6.8.1",
+    "jsonfile": "^2.2.2",
+    "vision": "^3.0.0"
+  },
+  "devDependencies": {
+    "gulp": "^3.9.0",
+    "gulp-autoprefixer": "^3.0.2",
+    "gulp-less": "^3.0.3"
+  }
+}

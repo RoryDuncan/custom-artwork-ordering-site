@@ -1,0 +1,86 @@
+{
+
+  "Stretched Canvas": {
+    "value": "canvas",
+    "selector": "canvas-dimensions",
+    "image": "stretchedcanvas.jpg",
+    "dimensions": {
+      "4x4": {
+        "label": "4 &times; 4",
+        "price": 100
+      },
+      "8x10":{
+        "label": "8 &times; 10",
+        "price": 100
+      },
+      "9x12":{
+        "label": "9 &times; 12",
+        "price": 100
+      },
+      "11x14": {
+        "label": "11 &times; 14",
+        "price": 100
+      },
+      "12x16": {
+        "label": "12 &times; 16",
+        "price": 100
+      }
+    }
+  },
+
+  "Canvas Panel": {
+    "value": "panel",
+    "selector": "panel-dimensions",
+    "image": "canvaspanel.jpg",
+    "dimensions": {
+      "4x4": {
+        "label": "4 &times; 4",
+        "price": 100
+      },
+      "8x10":{
+        "label": "8 &times; 10",
+        "price": 100
+      },
+      "9x12":{
+        "label": "9 &times; 12",
+        "price": 100
+      },
+      "11x14": {
+        "label": "11 &times; 14",
+        "price": 100
+      },
+      "12x16": {
+        "label": "12 &times; 16",
+        "price": 100
+      }
+    }
+  },
+
+  "Raw Wood": {
+    "value": "wood",
+    "selector": "wood-dimensions",
+    "image": "wood.jpg",
+    "dimensions": {
+      "4x4": {
+        "label": "4 &times; 4",
+        "price": 100
+      },
+      "8x10":{
+        "label": "8 &times; 10",
+        "price": 100
+      },
+      "9x12":{
+        "label": "9 &times; 12",
+        "price": 100
+      },
+      "11x14": {
+        "label": "11 &times; 14",
+        "price": 100
+      },
+      "12x16": {
+        "label": "12 &times; 16",
+        "price": 100
+      }
+    }
+  }
+}

@@ -9,8 +9,13 @@ head
   link(href='/css/normalize.css' rel='stylesheet' type='text/css')
   meta(name="viewport", content="width=device-width")
   block meta
+  - var site = "sitename"
   block title
-    title app
+    - var title = ""
+  if title
+    title=title + " | " + site
+  else
+    title=site
   link(rel="stylesheet", href="/css/main.css")
   block head
 

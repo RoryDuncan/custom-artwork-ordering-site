@@ -60,6 +60,10 @@
   & .col:first-child {
     padding-left: 0px;
   }
+
+  & .col:last-child {
+    padding-right: 0px;
+  }
 }
 
 .wrapper {
@@ -86,7 +90,7 @@
 }
 
 .col:nth-of-type(4n-2) {
-  padding: 0px 0px;
+  padding: 0px @gutter-size / 2;
 }
 
 

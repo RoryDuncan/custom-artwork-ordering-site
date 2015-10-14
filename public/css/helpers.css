@@ -16,7 +16,8 @@
   font-size: 0.8em;
 }
 .comment:before {
-  content: "# ";
+  color: #666;
+  content: "Note: ";
 }
 .fadeout {
   opacity: 0;

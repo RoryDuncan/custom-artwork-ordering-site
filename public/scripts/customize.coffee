@@ -6,15 +6,17 @@ canvas = document.getElementById('size')
 customtext = document.getElementById('customtext')
 material = document.getElementById('material')
 materials = {
-  'panel': document.getElementById("panel-sizes"),
-  'wood': document.getElementById('wood-sizes'),
-  'canvas': document.getElementById('canvas-sizes')
+  'panel': document.getElementById("material-panel"),
+  'wood': document.getElementById('material-wood'),
+  'canvas': document.getElementById('material-canvas')
 }
 dimensionSelect = {
   'canvas': document.getElementById("canvas-dimensions"),
   'panel': document.getElementById("panel-dimensions"),
   'wood': document.getElementById("wood-dimensions")
 }
+
+sizes = document.querySelectorAll(".sizes .size")
 dimensions = document.querySelectorAll(".dimensions")
 landscape = document.getElementById("landscape")
 
@@ -31,7 +33,13 @@ colors = {
 
 document.ready.push () ->
 
-  material.addEventListener "change", changeMaterial
+  for key, m of materials
+    do (material) ->
+      if material.value is key
+        m.classList.add("active")
+      m.addEventListener("click", changeMaterial)
+  showDimensionsOfSelected()
+
   dimensionSelect.canvas.addEventListener "change", showPreviewProportions
   dimensionSelect.panel.addEventListener "change", showPreviewProportions
   dimensionSelect.wood.addEventListener "change", showPreviewProportions
@@ -42,17 +50,19 @@ document.ready.push () ->
   showPreviewProportions()
 
 
+
 # functions
 
 
 
-# updates the non-live collection of .colors .color,
-# and updates our count of it
+## color picker
+
+
+# updates the non-live collection of '.colors .color', and updates our count of it
 colorPickerUpdate = () ->
   colors.color = document.querySelectorAll(".colors .color")
   colors.count = colors.color.length
   return
-
 
 # adds colors when you click the "Add another color button"
 addColorPicker = (e) ->
@@ -75,6 +85,7 @@ addColorPicker = (e) ->
   clone.querySelector("a.close").addEventListener "click", removeColorPicker
   return
 
+# removes the colorpicker associated with the event.target's a.close
 removeColorPicker = (e) ->
   colorPickerUpdate()
   for color in colors.color
@@ -89,10 +100,13 @@ removeColorPicker = (e) ->
             colors.add.classList.remove("hidden")
         , 250
 
-
-
+# toggles custom color picking option
 toggleColorPicking = (e) ->
   colors.pickcolors.classList.toggle("active")
+
+
+## text content count
+
 
 # updates the number of letters taken up
 updateLetterCount = (e) ->
@@ -103,13 +117,30 @@ updateLetterCount = (e) ->
   else
     current.classList.remove("overflow")
 
+
+## preview canvas feature
+
+
 # changes the material and handles displaying the corresponding section
 changeMaterial = (e) ->
   for m of materials
     materials[m].classList.remove("active")
-  mat = e.target.value
+
+  mat = @getAttribute("data-select")
+  material.value = mat;
   materials[mat].classList.add("active")
-  showPreviewProportions()
+  showDimensionsOfSelected()
+
+
+showDimensionsOfSelected = () ->
+  value = material.value
+
+  for el, i in sizes
+    if el.getAttribute("data-select") is value
+      el.classList.add("active")
+    else
+      el.classList.remove("active")
+
 
 # inverts the height and width dimensions of all the dimension dropdown
 invertDimensions = (e) ->
@@ -126,6 +157,7 @@ invertDimensions = (e) ->
 # update the canvas to display the proportions and layout
 showPreviewProportions = () ->
   target = document.querySelectorAll(".sizes.active select")[0]
+  target = dimensionSelect[material.value]
   value = target.value.split("x")
   x = 0
   y = 1
@@ -141,7 +173,7 @@ showPreviewProportions = () ->
   ctx.rect(0,0, canvas.width, canvas.height)
   ctx.fill()
   ctx.stroke()
-  ctx.fillStyle = "#aaa"
+  ctx.fillStyle = "#888"
   ctx.font = "#{scale}px Open Sans"
   ctx.textAlign = "center"
   ctx.fillText("#{value[x]} × #{value[y]}", (canvas.width* 0.5), ((canvas.height+scale)*0.5))

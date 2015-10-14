@@ -1,0 +1,51 @@
+extends shared/layout
+
+block prepend scripts
+  script(src="/scripts/fuzzy.js")
+  script(src="/scripts/faq.js")
+block title
+  - var title = "Frequently Asked Questions"
+
+block content
+  .wrapper
+    h1 Frequently Asked Questions
+
+    p
+      input(type="text", id="search" placeholder="Find...")
+
+    ul.faq
+      li
+        h3.question What shipping methods are available?
+        p.answer We use x, x, or x.
+
+      li
+        h3.question Where does the art ship from?
+        p.answer Northern California.
+
+
+      //- li>h3.question+p.answer
+      li
+        h3.question Are these handmade?
+        p.answer Yes, the artwork is done by hand.
+
+      li
+        h3.question What do you mean by 'transparent pricing?'
+        p.answer Transparent pricing means that you can view where all the costs of the product are.
+
+      li
+        h3.question I want an even more customized piece done, is that possible?
+        p.answer Yes, #[a(href="/contact") contact us] and we can work with your needs.
+
+      li
+        h3.question Can you do mediums other than canvases?
+        p.answer That depends. #[a(href="/contact") Contact us] with yor situation and we'll see what we can do.
+
+      li
+        h3.question I need a wall / building done with artwork, do you do those?
+        p.answer If it seems legal, we can pass the word along to our artists. It will then be up to them to contact you.
+
+      li
+        h3.question#color-variance Why will colors vary from the ones I've picked?
+        p.answer The colors choosen online give you the entire spectrum of colors that the computer can display, while we are limited to the colors available to purchase.
+          br
+          a(href="https://en.wikipedia.org/wiki/Color_space", target="_blank") For further information, please refer to wikipedia on gamuts

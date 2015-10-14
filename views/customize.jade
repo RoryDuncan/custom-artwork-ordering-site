@@ -2,76 +2,60 @@ extends ./shared/layout.jade
 
 
 
+block title
+  - var title = "Customize Your Order"
+
 block scripts
   script(src="/scripts/customize.js")
 
 block content
+  unless model
+    - throw new Error("Model missing from customize.jade")
+
   - var maxcharlength = 24;
   - colors = ["#ffffff", "#00aacc"];
   .fullpage
     section.customize
+
       .wrapper
         h1 Customize your Order
         p You can choose from several options to make your piece personal.
-        #material-and-size
-          h2 Material &amp; Size
-          .row
-            .col.w8
-              label(for="material") Choose a material:
-            .col.w6
-              select#material(name="material")
-                option(value="canvas", selected) Stretched Canvas
-                option(value="panel") Canvas Panel
-                option(value="wood") Raw Wood
-          .row
-            .col.w24
 
+        section#material-and-size
+          h2 Material &amp; Size
+          p Pick the material and size you want.
+          input(type="hidden", name="material", id="material", value="canvas")
+          .materials-select
+            .row
+              each material, key in model
+                .col.w8
+                  a.material(data-select=material.value, id=("material-" + material.value))
+                    img(src=("/images/" + material.image), alt="")
+                    h3=key
+                    .description
+                      p=material.description
           .row
-            .col.w16
-              #canvas-sizes.sizes.active
-                h3 Stretched Canvas Sizes
+            #canvas-sizes
+              .col.w12
                 .row
-                  .col.w8
-                    label(for="canvas dimensions") Choose a size:
-                  .col.w16
-                    select#canvas-dimensions(name="canvas dimensions")
-                      option(value="4x4") 4 &times; 4
-                      option(value="8x10", selected) 8 &times; 10
-                      option(value="9x12") 9 &times; 12
-                      option(value="11x14") 11 &times; 14
-                      option(value="12x16") 12 &times; 16
-              #panel-sizes.sizes
-                h3 Canvas Panel Sizes
+                  .sizes.col.w12
+                    each material, key in model
+                        .size(data-select=material.value).text-center
+                          h3=(key + " Sizes")
+                          .row
+                            label(for=material.selector) Choose a size:
+                          .row
+                            select(id=material.selector, name=material.selector)
+                              each option, text in material.dimensions
+                                option(value=text)!=option.label
+              .col.w12
+                h3 Oreintation
                 .row
-                  .col.w8
-                    label(for="dimension") Choose a size:
-                  .col.w16
-                    select#panel-dimensions(name="dimensions")
-                      option(value="8x10", selected) 8 &times; 10
-                      option(value="9x12") 9 &times; 12
-                      option(value="11x14") 11 &times; 14
-                      option(value="12x16") 12 &times; 16
-              #wood-sizes.sizes
-                h3 Wood Piece Sizes
-                .row
-                  .col.w8
-                    label(for="wood dimensions") Choose a size:
-                  .col.w16
-                    select#wood-dimensions(name="wood dimensions")
-                      option(value="4x4")   4 &times; 4
-                      option(value="8x10", selected)  8 &times; 10
-                      option(value="9x12")  9 &times; 12
-                      option(value="11x14") 11 &times; 14
-                      option(value="12x16") 12 &times; 16
-            .col.w8
-              h3 Layout Example
-              .row
-                input#landscape(name="landscape", type="checkbox")
-                label(for="landscape") Landscape
-              .row
-                #layout-example
-                  canvas#size
-        #text
+                  input#landscape(name="landscape", type="checkbox")
+                  label(for="landscape") Landscape
+                  #layout-example
+                    canvas#size
+        section#text
           h2 Content
           p Enter the text you want.
           .row
@@ -82,7 +66,7 @@ block content
                 | /
                 span#char-max=maxcharlength
 
-        #color-scheme
+        section#color-scheme
           h2 Color Scheme
           p
             | Choose some base colors, and our artists will use them in the piece.
@@ -91,8 +75,7 @@ block content
               label(for="artist-choice") Let artists pick colors
                 input(type="checkbox", name="artist-choice", id="artist-choice")
               hr
-          .pick-colors.active
-
+          .row.pick-colors.active
             .colors
               - var count = 0
               - for color in colors
@@ -116,10 +99,14 @@ block content
             .row
               .col.w12
                 button#add-another-color.btn.block-center.action.small(type="button") #[b +] add another color
+            .row
+              p.comment Product hues may vary from picked colors. &nbsp;
+                a(href="/faq#color-variance") Learn more
 
-        #comments
+        section#comments
           h2 Comments
           p Let us know about any special instructions you'd like to give, placement of text, etc.
-          textarea#message(name="", cols="60", rows="6")
+          textarea#message(name="", cols="40", rows="6")
+
         #next.hook
           input.btn.primary(type="button", value="Review Order")

@@ -56,7 +56,7 @@ header {
   padding: 0px 0px;
   margin-bottom: 0px;
   box-shadow: 0px 1px 4px rgba(0,0,0,0.25);
-  .logo {
+  a.logo {
     float: left;
     text-align: center;
     width: 200px;
@@ -65,6 +65,7 @@ header {
     font-size: 2em;
     font-weight: 200;
     color: #222;
+    text-decoration: none;
     &:focus,
     &:active,
     &:hover {
@@ -164,6 +165,7 @@ footer {
       li {
 
         a {
+          text-decoration: none;
           color: @gamma;
           display: block;
           padding: 18px 18px;
@@ -192,28 +194,49 @@ footer {
         float: right;
         a {
           //.hip();
+          text-decoration: none;
           color: #b2b2b2;
           display: block;
           padding: 10px 15px;
           font-size: 0.9em;
           &:hover {
-            color: @beta;
-            background-color: #fafafa;
+            color: @delta;
+            background-color: #fafaff;
           }
           &:active,
           &:focus {
-            background-color: lighten(@alpha, 18%);
-            color: #000;
-            transition: 0.35s ease-in background-color 0.1s;
+            background-color: @beta;
+            color: @delta;
+            transition: 0.1s ease-in background-color;
           }
 
+          &.action {
+            color: @alpha;
+            font-weight: 600;
+            box-shadow: 0px 0px 20px #fff inset;
+            &:hover {
+              background-image: data-uri("/images/swirl_pattern.png");
+              // background-color: @alpha;
+              // background-blend-mode: screen, multiply;
+              animation: 16s rotate-background linear infinite;
+            }
+          }
         }
       }
-
     }
   }
 }
 
+@keyframes rotate-background {
+
+  from {
+    background-position: 0px 0px;
+  }
+
+  to {
+    background-position: 300px 300px;
+  }
+}
 
 
 
@@ -240,8 +263,13 @@ footer {
   h3 {
     .hip();
     color: #fafafa;
-    border-top: 1px dotted #000;
-    padding-top: 10px;
+    border-top: 1px dotted #888;
+    border-bottom: 1px dotted #888;
+    padding: 16px 0px;
+  }
+
+  .example-image {
+    box-shadow: 0px 2px 8px 2px rgba(0,0,0,0.6);
   }
 }
 
@@ -277,28 +305,153 @@ footer {
   }
 
   #layout-example {
-    min-height: 250px;
+    min-height: 50px;
       canvas {
         margin-top: 15px;
         &:hover {
-          box-shadow: 0px 0px 5px #ccc;
+          box-shadow: 0px 0px 5px #aaa;
         }
       }
   }
 
-  .sizes {
+  h2 {
+    color: @alpha;
+  }
+  section {
+    margin: 24px auto;
+    border: 1px solid @beta;
+    padding: 16px 16px;
+    background-color: #fcfcfc;
+    box-shadow: 0px 2px 0px #bbb;
+    border-radius: 3px;
+  }
 
-    pointer-events: none;
-    user-select: none;
-    cursor: default;
-    opacity: 0.35;
-    filter: blur(3px);
-    &.active {
-      pointer-events: auto;
-      opacity: 1;
-      filter: blur(0px);
-      transition: 0.25s ease-in-out all;
+  .materials-select {
+
+    a.material {
+      @border-size: 1px;
+      color: #222;
+      display: block;
+      border-radius: 0px;
+      background-color: #fff;
+      border: @border-size solid #828282;
+
+      h3, p {
+        padding: 0px 10px;
+      }
+      h3 {
+        color: #000;
+        .text-center();
+      }
+      .discription {
+        height: 0px;
+        overflow: hidden;
+        &:before {
+          content: "?";
+          display: block;
+
+          color: @gamma;
+        }
+        &:focus,
+        &:active {
+          height: 60px;
+          overflow: scroll;
+          transition: 0.1s linear all;
+        }
+      }
+      p {
+        font-size: 0.7em;
+      }
+
+      img {
+        width: 100%;
+        overflow: hidden;
+        pointer-events: none;
+        user-select: none;
+      }
+
+      &:hover {
+        h3 {
+        }
+        p {
+          color: @beta;
+        }
+        outline: 2px solid @delta;
+        //box-shadow: 0px 1px 8px @gamma;
+        color: @gamma;
+      }
+
+      &::after {
+        margin-top: -25px;
+        margin-left: -10px;
+        position: absolute;
+        content: "✓";
+        display: inline-block;
+        background-color: @alpha;
+        color: #fff;
+        text-align: center;
+        font-size: 32px;
+        width: 32px;
+        border-radius: 50%;
+        line-height: 32px;
+        padding: 5px 5px;
+        transform: scale(0.2);
+        opacity: 0;
+        transition: 0.5s ease-in all;
+
+      }
+
+      &.active {
+        outline: 3px solid @alpha;
+        h3 {
+          color: @alpha;
+        }
+        p {
+          height: auto;
+          visibility: visible;
+        }
+        &::after {
+          transform: scale(1);
+          opacity: 1;
+          transition: 0.5s cubic-bezier(0, 1.8, 1, 1.8) transform,
+          0.2s ease-in-out opacity;
+          //transition-timing-function: ;
+        }
+      }
     }
+  }
+
+  #canvas-sizes {
+    margin-top: 20px;
+  }
+
+  .sizes {
+    min-height: 150px;
+   //margin-top: 20px;
+    overflow: hidden;
+    .size {
+      display: none;
+      visibility: hidden;
+      position: relative;
+      top: -200px;
+      padding-bottom: 16px;
+      pointer-events: none;
+      user-select: none;
+      cursor: default;
+      overflow: auto;
+      opacity: 0;
+      background-color: #fff;
+      border: 3px solid transparent;
+      &.active {
+        display: block;
+        visibility: visible;
+        pointer-events: auto;
+        opacity: 1;
+        top: 0px;
+        transition: 0.25s ease-in-out top 0.1s, display 0s;
+      }
+    }
+
   }
 
   #color-scheme {
@@ -383,6 +536,34 @@ footer {
 }
 
 
+ul.faq {
+  list-style-type: none;
+  padding-left: 0px;
+
+  .question {
+    color: @gamma;
+  }
+  .answer {
+    color: @beta;
+  }
+  li {
+    display: block;
+  }
+
+  &.searching {
+    li {
+      display: none;
+      &.result {
+        display: block;
+      }
+    }
+  }
+
+}
+
+
+// FORM PARTS
+
 label {
   font-size: 0.85em;
   text-transform: uppercase;
@@ -412,6 +593,7 @@ option,
 textarea {
   font-family: "Source Sans Pro";
   font-size: 17px;
+  max-width: 100%;
 }
 
 textarea,
@@ -430,6 +612,11 @@ input[type=color] {
   padding: 0px 2px;
   width: 25px;
   height: 25px;
+}
+
+textarea {
+  width: 100%;
+  resize: vertical;
 }
 
 

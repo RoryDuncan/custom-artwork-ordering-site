@@ -1,5 +1,14 @@
 
+ViewModel = require '../viewmodel.js'
+
 module.exports = (server) ->
+
+  server.state "_token", {
+    ttl: 60*60*1000
+    isSecure: false
+    isHttpOnly: true
+    encoding: 'base64json'
+  }
 
   # index
   server.route
@@ -10,13 +19,40 @@ module.exports = (server) ->
         template: 'index'
         context: {}
 
+  # shop
+  server.route
+    method: 'GET'
+    path: '/shop'
+    handler:
+      view:
+        template: 'shop'
+        context: {}
+
   # customize
   server.route
     method: 'GET'
     path: '/customize'
+    handler: (req, reply) ->
+      viewmodel = new ViewModel("customize")
+      console.log viewmodel
+      reply.view("customize", viewmodel.send()).state("_token", viewmodel.token)
+
+  # faq
+  server.route
+    method: 'GET'
+    path: '/faq'
     handler:
       view:
-        template: 'customize'
+        template: 'faq'
+        context: {}
+
+  # contact
+  server.route
+    method: 'GET'
+    path: '/contact'
+    handler:
+      view:
+        template: 'contact'
         context: {}
 
   ## favicon

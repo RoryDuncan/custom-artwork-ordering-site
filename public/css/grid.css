@@ -15,6 +15,9 @@
 .row .col:first-child {
   padding-left: 0px;
 }
+.row .col:last-child {
+  padding-right: 0px;
+}
 .wrapper {
   display: table;
   width: 100%;
@@ -30,7 +33,7 @@
   float: none;
 }
 .col:nth-of-type(4n-2) {
-  padding: 0px 0px;
+  padding: 0px 1.25%;
 }
 .block-until-bp-1 {
   float: none;
